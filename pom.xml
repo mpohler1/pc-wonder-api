@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pc-wonder</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>backend</name>
-	<description>Backend for PC Wonder</description>
+	<name>api</name>
+	<description>API for PC Wonder</description>
 
 	<properties>
 		<java.version>1.8</java.version>

@@ -26,7 +26,7 @@ class CategoryControllerTest {
     }
 
     @Test
-    void get_categories_returns_an_empty_list_when_there_are_no_categories() {
+    void get_categories_returns_an_empty_list_when_repository_is_empty() {
         List<Category> categoryList = controller.getCategories();
         assertEquals(0, categoryList.size());
     }

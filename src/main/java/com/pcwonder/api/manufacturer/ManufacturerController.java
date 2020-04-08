@@ -17,7 +17,7 @@ public class ManufacturerController {
     }
 
     @GetMapping("/manufacturers")
-    public List<Manufacturer> getManufacturers() {
-        return repository.findAllOrderByNameAsc();
+    List<Manufacturer> getManufacturers() {
+        return repository.findAllByOrderByNameAsc();
     }
 }

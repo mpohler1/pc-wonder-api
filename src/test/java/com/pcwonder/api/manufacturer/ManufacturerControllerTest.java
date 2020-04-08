@@ -45,7 +45,7 @@ class ManufacturerControllerTest {
         expectedManufacturerList.add(intel);
         expectedManufacturerList.add(nvidia);
 
-        when(mockedRepository.findAllOrderByNameAsc()).thenReturn(expectedManufacturerList);
+        when(mockedRepository.findAllByOrderByNameAsc()).thenReturn(expectedManufacturerList);
 
         List<Manufacturer> actualManufacturerList = controller.getManufacturers();
         assertEquals(expectedManufacturerList, actualManufacturerList);

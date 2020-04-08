@@ -10,6 +10,9 @@ import javax.persistence.Id;
 @Entity
 public class Manufacturer {
 
-    @Id @GeneratedValue private long id;
+    @Id
+    @GeneratedValue
+    private long id;
+
     private String name;
 }

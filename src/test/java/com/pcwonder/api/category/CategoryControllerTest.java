@@ -45,7 +45,7 @@ class CategoryControllerTest {
         expectedCategoryList.add(gpu);
         expectedCategoryList.add(cpu);
 
-        when(mockedRepository.findAllOrderByNameAsc()).thenReturn(expectedCategoryList);
+        when(mockedRepository.findAllByOrderByNameAsc()).thenReturn(expectedCategoryList);
 
         List<Category> actualCategoryList = controller.getCategories();
         assertEquals(expectedCategoryList, actualCategoryList);

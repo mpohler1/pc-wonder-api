@@ -22,6 +22,11 @@ public class ProductController {
         return repository.findAll();
     }
 
+    @GetMapping("/products/category/{categoryId}")
+    List<Product> getProducts(@PathVariable long categoryId) {
+        return repository.findAllByCategoryId(categoryId);
+    }
+
     @GetMapping("/product/{uuid}")
     Product getProduct(@PathVariable String uuid) {
         return repository.findByUuid(uuid)

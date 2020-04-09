@@ -146,6 +146,7 @@ class ProductControllerTest {
         naga.setCategory(mouseCategory);
         naga.setManufacturer(razer);
         naga.setName("Naga");
+        naga.setDescription("Razer Naga is a mouse");
         naga.setPrice(BigDecimal.valueOf(40.00));
         naga.setRating(BigDecimal.valueOf(4.0));
         naga.setYear(2014);

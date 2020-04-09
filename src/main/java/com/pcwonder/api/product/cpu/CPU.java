@@ -10,5 +10,7 @@ import javax.persistence.Entity;
 public class CPU extends Product {
     private String socket;
     private double speed;
-    private int wattage;
+    private int cores;
+    private boolean sixtyFourBitSupport;
+    private boolean hyperThreadingSupport;
 }

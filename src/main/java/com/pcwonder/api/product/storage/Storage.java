@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 @Data
 @Entity
 public class Storage extends Product {
+    private FormFactor form;
+    private SATAVersion sataVersion;
     private double size;
-    private double transfer;
+    private int rpm;
+    private int cache;
 }

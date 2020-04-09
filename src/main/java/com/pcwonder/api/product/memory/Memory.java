@@ -9,5 +9,7 @@ import javax.persistence.Entity;
 @Entity
 public class Memory extends Product {
     private int size;
-    private String type;
+    private int numSticks;
+    private int memoryPerStick;
+    private MemoryType type;
 }

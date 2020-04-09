@@ -25,6 +25,7 @@ public class Product {
     private Manufacturer manufacturer;
 
     private String name;
+    private String description;
     private int year;
     private BigDecimal price;
     private BigDecimal rating;

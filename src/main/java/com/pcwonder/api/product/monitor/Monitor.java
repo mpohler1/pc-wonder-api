@@ -9,4 +9,13 @@ import javax.persistence.Entity;
 @Entity
 public class Monitor extends Product {
     private double size;
+    private int resolutionX;
+    private int resolutionY;
+    private int refreshRate;
+    private int responseTime;
+    private boolean speakers;
+    private boolean curved;
+    private boolean displayPort;
+    private boolean hdmi;
+    private int usbPorts;
 }

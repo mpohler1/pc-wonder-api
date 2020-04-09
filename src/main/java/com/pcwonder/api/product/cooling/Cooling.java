@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 @Data
 @Entity
 public class Cooling extends Product {
+    private int size;
     private double length;
     private double width;
     private double height;

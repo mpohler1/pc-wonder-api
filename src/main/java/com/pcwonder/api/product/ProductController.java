@@ -2,6 +2,7 @@ package com.pcwonder.api.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,5 +20,11 @@ public class ProductController {
     @GetMapping("/products")
     List<Product> getProducts() {
         return repository.findAll();
+    }
+
+    @GetMapping("/product/{uuid}")
+    Product getProduct(@PathVariable String uuid) {
+        return repository.findByUuid(uuid)
+                .orElseThrow(() -> new ProductNotFoundException(uuid));
     }
 }

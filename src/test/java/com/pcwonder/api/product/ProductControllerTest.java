@@ -11,8 +11,10 @@ import org.mockito.MockitoAnnotations;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class ProductControllerTest {
@@ -36,9 +38,9 @@ class ProductControllerTest {
 
     @Test
     void get_products_returns_product_list() {
-        Category peripheral = new Category();
-        peripheral.setId(0);
-        peripheral.setName("Peripheral");
+        Category mouseCategory = new Category();
+        mouseCategory.setId(0);
+        mouseCategory.setName("Mouse");
 
         Manufacturer razer = new Manufacturer();
         razer.setId(0);
@@ -46,7 +48,7 @@ class ProductControllerTest {
 
         Product mouse = new Product();
         mouse.setId(0);
-        mouse.setCategory(peripheral);
+        mouse.setCategory(mouseCategory);
         mouse.setManufacturer(razer);
         mouse.setName("Deathadder");
         mouse.setPrice(BigDecimal.valueOf(40.00));
@@ -56,7 +58,7 @@ class ProductControllerTest {
 
         Product keyboard = new Product();
         keyboard.setId(1);
-        keyboard.setCategory(peripheral);
+        keyboard.setCategory(mouseCategory);
         keyboard.setManufacturer(razer);
         keyboard.setName("Black Widow");
         keyboard.setPrice(BigDecimal.valueOf(150.00));
@@ -72,5 +74,37 @@ class ProductControllerTest {
 
         List<Product> actualProductList = controller.getProducts();
         assertEquals(expectedProductList, actualProductList);
+    }
+
+    @Test
+    void get_product_with_uuid_not_in_repository_throws_product_not_found_exception() {
+        assertThrows(ProductNotFoundException.class, () -> controller.getProduct(UUID.randomUUID().toString()));
+    }
+
+    @Test
+    void get_product_with_uuid_in_repository_returns_expected_product() {
+        Category mouseCategory = new Category();
+        mouseCategory.setId(0);
+        mouseCategory.setName("Mouse");
+
+        Manufacturer razer = new Manufacturer();
+        razer.setId(0);
+        razer.setName("Razer");
+
+        Product expectedProduct = new Product();
+        expectedProduct.setId(0);
+        expectedProduct.setUuid(UUID.randomUUID().toString());
+        expectedProduct.setCategory(mouseCategory);
+        expectedProduct.setManufacturer(razer);
+        expectedProduct.setName("Deathadder");
+        expectedProduct.setPrice(BigDecimal.valueOf(40.00));
+        expectedProduct.setRating(BigDecimal.valueOf(4.5));
+        expectedProduct.setYear(2017);
+        expectedProduct.setImageURL("");
+
+        when(mockedRepository.findByUuid(expectedProduct.getUuid())).thenReturn(Optional.of(expectedProduct));
+
+        Product actualProduct = controller.getProduct(expectedProduct.getUuid());
+        assertEquals(expectedProduct, actualProduct);
     }
 }

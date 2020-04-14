@@ -24,7 +24,9 @@ public class Product {
     @JoinColumn(name = "manufacturer_id", referencedColumnName = "id")
     private Manufacturer manufacturer;
 
+    @Column(unique = true)
     private String uuid;
+
     private String name;
     private String description;
     private int year;

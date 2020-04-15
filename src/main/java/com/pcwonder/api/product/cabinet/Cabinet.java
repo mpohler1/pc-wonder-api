@@ -1,4 +1,4 @@
-package com.pcwonder.api.product.desktopcase;
+package com.pcwonder.api.product.cabinet;
 
 import com.pcwonder.api.product.Product;
 import com.pcwonder.api.product.motherboard.MotherboardSize;
@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 @Data
 @Entity
-public class DesktopCase extends Product {
+public class Cabinet extends Product {
     private MotherboardSize size;
     private double maxPSULength;
     private int largeHDDBays;

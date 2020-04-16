@@ -12,7 +12,7 @@ public class GPU extends Product {
     private MotherboardSize size;
     private int fans;
     private double speed;
-    private String pciInterface;
+    private PCIInterface pciInterface;
     private int displayPortPorts;
     private int hdmiPorts;
     private int dviPorts;

@@ -1,8 +1,8 @@
 package com.pcwonder.api.product.memory;
 
 public enum MemoryType {
-    DDR4_SDRAM,
-    DDR3,
+    DDR1,
     DDR2,
-    DDR1
+    DDR3,
+    DDR4_SDRAM
 }

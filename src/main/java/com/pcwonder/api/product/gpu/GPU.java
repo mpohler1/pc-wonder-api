@@ -16,8 +16,7 @@ public class GPU extends Product {
     private int displayPortPorts;
     private int hdmiPorts;
     private int dviPorts;
-    private int slotWidth;
+    private double slotWidth;
     private double length;
-    private double width;
     private double height;
 }

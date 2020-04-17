@@ -10,13 +10,17 @@ import javax.persistence.Entity;
 public class Motherboard extends Product {
     private String socket;
     private MotherboardSize size;
-    private int memorySlots;
     private int maxMemory;
+    private int memorySlots;
+    private int pciExpress1Slots;
     private int pciExpress2Slots;
     private int pciExpress3Slots;
-    private int usb2Slots;
-    private int usb3slots;
-    private int usbCSlots;
-    private int hdmiSlots;
-    private int ps2Slots;
+    private int pciExpress4Slots;
+    private int usb2Ports;
+    private int usb3Ports;
+    private int usbCPorts;
+    private int hdmiPorts;
+    private int dviPorts;
+    private int vgaPorts;
+    private int ps2Ports;
 }

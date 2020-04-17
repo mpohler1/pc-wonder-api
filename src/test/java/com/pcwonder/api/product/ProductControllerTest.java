@@ -3,6 +3,7 @@ package com.pcwonder.api.product;
 import com.pcwonder.api.category.Category;
 import com.pcwonder.api.manufacturer.Manufacturer;
 import com.pcwonder.api.product.mouse.Mouse;
+import com.pcwonder.api.product.mouse.MouseInterface;
 import com.pcwonder.api.product.mouse.Orientation;
 import com.pcwonder.api.product.mouse.TrackingMethod;
 import org.junit.jupiter.api.BeforeEach;
@@ -106,8 +107,7 @@ class ProductControllerTest {
         dummyProduct.setButtons(2);
         dummyProduct.setMaxDPI(6400);
         dummyProduct.setWired(true);
-        dummyProduct.setPs2(false);
-        dummyProduct.setUsb(true);
+        dummyProduct.setMouseInterface(MouseInterface.USB);
 
         return dummyProduct;
     }
@@ -137,8 +137,7 @@ class ProductControllerTest {
         deathadder.setButtons(2);
         deathadder.setMaxDPI(6400);
         deathadder.setWired(true);
-        deathadder.setPs2(false);
-        deathadder.setUsb(true);
+        deathadder.setMouseInterface(MouseInterface.USB);
 
         Mouse naga = new Mouse();
         naga.setId(1);
@@ -156,8 +155,7 @@ class ProductControllerTest {
         naga.setButtons(14);
         naga.setMaxDPI(6400);
         naga.setWired(true);
-        naga.setPs2(false);
-        naga.setUsb(true);
+        naga.setMouseInterface(MouseInterface.USB);
 
         List<Product> dummyProductList = new LinkedList<>();
         dummyProductList.add(deathadder);

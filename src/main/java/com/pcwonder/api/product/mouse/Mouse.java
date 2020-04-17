@@ -11,8 +11,7 @@ public class Mouse extends Product {
     private Orientation orientation;
     private TrackingMethod tracking;
     private boolean wired;
-    private boolean usb;
-    private boolean ps2;
+    private MouseInterface mouseInterface;
     private int buttons;
     private int maxDPI;
 }

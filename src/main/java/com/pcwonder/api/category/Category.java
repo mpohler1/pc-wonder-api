@@ -24,4 +24,11 @@ public class Category {
     private List<Manufacturer> manufacturers;
 
     private String name;
+
+    @Column(unique = true)
+    private String nameLowerCase;
+
+    @PrePersist @PreUpdate private void prepare(){
+        this.nameLowerCase = (name == null ? null : name.toLowerCase());
+    }
 }

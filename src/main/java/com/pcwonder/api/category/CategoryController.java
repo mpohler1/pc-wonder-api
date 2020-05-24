@@ -15,6 +15,7 @@ class CategoryController {
         this.repository = repository;
     }
 
+    @CrossOrigin("*")
     @GetMapping("/categories")
     List<Category> getCategories() {
         return repository.findAllByOrderByNameAsc();

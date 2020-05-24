@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findByUuid(String uuid);
     List<Product> findAllByCategoryId(long categoryId);
+    List<Product> findAllByCategoryNameIgnoreCase(String categoryName);
 }

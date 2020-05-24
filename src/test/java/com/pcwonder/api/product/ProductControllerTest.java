@@ -68,6 +68,23 @@ class ProductControllerTest {
     }
 
     @Test
+    void get_products_with_category_name_returns_empty_list_when_no_products_in_category() {
+        List<Product> productList = controller.getProducts("gpu");
+        assertEquals(0, productList.size());
+    }
+
+    @Test
+    void get_products_with_category_name_returns_expected_product_list() {
+        List<Product> expectedProductList = createDummyProductList();
+        String categoryName = expectedProductList.get(0).getCategory().getName();
+
+        when(mockedRepository.findAllByCategoryNameIgnoreCase(categoryName)).thenReturn(expectedProductList);
+
+        List<Product> actualProductList = controller.getProducts(categoryName);
+        assertEquals(expectedProductList, actualProductList);
+    }
+
+    @Test
     void get_product_with_uuid_not_in_repository_throws_product_not_found_exception() {
         assertThrows(ProductNotFoundException.class, () -> controller.getProduct(UUID.randomUUID().toString()));
     }

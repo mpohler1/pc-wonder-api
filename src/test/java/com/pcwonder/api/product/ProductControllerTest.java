@@ -85,6 +85,30 @@ class ProductControllerTest {
     }
 
     @Test
+    void search_products_with_empty_search_string_returns_empty_product_list() {
+        List<Product> expectedProductList = new LinkedList<>();
+        String searchString = "";
+
+        when(mockedRepository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchString, searchString))
+                .thenReturn(expectedProductList);
+
+        List<Product> actualProductList = controller.search(searchString);
+        assertEquals(expectedProductList, actualProductList);
+    }
+
+    @Test
+    void search_products_with_valid_search_string_returns_expected_products() {
+        List<Product> expectedProductList = createDummyProductList();
+        String searchString = "razer";
+
+        when(mockedRepository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchString, searchString))
+                .thenReturn(expectedProductList);
+
+        List<Product> actualProductList = controller.search(searchString);
+        assertEquals(expectedProductList, actualProductList);
+    }
+
+    @Test
     void get_product_with_uuid_not_in_repository_throws_product_not_found_exception() {
         assertThrows(ProductNotFoundException.class, () -> controller.getProduct(UUID.randomUUID().toString()));
     }

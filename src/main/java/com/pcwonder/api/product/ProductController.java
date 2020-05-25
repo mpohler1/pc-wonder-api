@@ -37,6 +37,12 @@ public class ProductController {
     }
 
     @CrossOrigin("*")
+    @GetMapping("products/search/{searchString}")
+    List<Product> search(@PathVariable String searchString) {
+        return repository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchString, searchString);
+    }
+
+    @CrossOrigin("*")
     @GetMapping("/product/{uuid}")
     Product getProduct(@PathVariable String uuid) {
         return repository.findByUuid(uuid)

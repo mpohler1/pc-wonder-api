@@ -18,31 +18,31 @@ public class ProductController {
         this.repository = repository;
     }
 
-    @CrossOrigin("*")
+    @CrossOrigin("https://www.masonpohler.com")
     @GetMapping("/products")
     List<Product> getProducts() {
         return repository.findAll();
     }
 
-    @CrossOrigin("*")
+    @CrossOrigin("https://www.masonpohler.com")
     @GetMapping("/products/category/id/{categoryId}")
     List<Product> getProducts(@PathVariable long categoryId) {
         return repository.findAllByCategoryId(categoryId);
     }
 
-    @CrossOrigin("*")
+    @CrossOrigin("https://www.masonpohler.com")
     @GetMapping("products/category/name/{categoryName}")
     List<Product> getProducts(@PathVariable String categoryName) {
         return repository.findAllByCategoryNameIgnoreCase(categoryName);
     }
 
-    @CrossOrigin("*")
+    @CrossOrigin("https://www.masonpohler.com")
     @GetMapping("products/search/{searchString}")
     List<Product> search(@PathVariable String searchString) {
         return repository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchString, searchString);
     }
 
-    @CrossOrigin("*")
+    @CrossOrigin("https://www.masonpohler.com")
     @GetMapping("/product/{uuid}")
     Product getProduct(@PathVariable String uuid) {
         return repository.findByUuid(uuid)

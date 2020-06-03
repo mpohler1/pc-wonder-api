@@ -3,6 +3,7 @@ package com.pcwonder.api.product;
 import com.pcwonder.api.category.Category;
 import com.pcwonder.api.manufacturer.Manufacturer;
 import com.pcwonder.api.product.mouse.Mouse;
+import com.pcwonder.api.product.mouse.MouseInterface;
 import com.pcwonder.api.product.mouse.Orientation;
 import com.pcwonder.api.product.mouse.TrackingMethod;
 import org.junit.jupiter.api.BeforeEach;
@@ -67,6 +68,47 @@ class ProductControllerTest {
     }
 
     @Test
+    void get_products_with_category_name_returns_empty_list_when_no_products_in_category() {
+        List<Product> productList = controller.getProducts("gpu");
+        assertEquals(0, productList.size());
+    }
+
+    @Test
+    void get_products_with_category_name_returns_expected_product_list() {
+        List<Product> expectedProductList = createDummyProductList();
+        String categoryName = expectedProductList.get(0).getCategory().getName();
+
+        when(mockedRepository.findAllByCategoryNameIgnoreCase(categoryName)).thenReturn(expectedProductList);
+
+        List<Product> actualProductList = controller.getProducts(categoryName);
+        assertEquals(expectedProductList, actualProductList);
+    }
+
+    @Test
+    void search_products_with_empty_search_string_returns_empty_product_list() {
+        List<Product> expectedProductList = new LinkedList<>();
+        String searchString = "";
+
+        when(mockedRepository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchString, searchString))
+                .thenReturn(expectedProductList);
+
+        List<Product> actualProductList = controller.search(searchString);
+        assertEquals(expectedProductList, actualProductList);
+    }
+
+    @Test
+    void search_products_with_valid_search_string_returns_expected_products() {
+        List<Product> expectedProductList = createDummyProductList();
+        String searchString = "razer";
+
+        when(mockedRepository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchString, searchString))
+                .thenReturn(expectedProductList);
+
+        List<Product> actualProductList = controller.search(searchString);
+        assertEquals(expectedProductList, actualProductList);
+    }
+
+    @Test
     void get_product_with_uuid_not_in_repository_throws_product_not_found_exception() {
         assertThrows(ProductNotFoundException.class, () -> controller.getProduct(UUID.randomUUID().toString()));
     }
@@ -106,8 +148,7 @@ class ProductControllerTest {
         dummyProduct.setButtons(2);
         dummyProduct.setMaxDPI(6400);
         dummyProduct.setWired(true);
-        dummyProduct.setPs2(false);
-        dummyProduct.setUsb(true);
+        dummyProduct.setMouseInterface(MouseInterface.USB);
 
         return dummyProduct;
     }
@@ -137,8 +178,7 @@ class ProductControllerTest {
         deathadder.setButtons(2);
         deathadder.setMaxDPI(6400);
         deathadder.setWired(true);
-        deathadder.setPs2(false);
-        deathadder.setUsb(true);
+        deathadder.setMouseInterface(MouseInterface.USB);
 
         Mouse naga = new Mouse();
         naga.setId(1);
@@ -156,8 +196,7 @@ class ProductControllerTest {
         naga.setButtons(14);
         naga.setMaxDPI(6400);
         naga.setWired(true);
-        naga.setPs2(false);
-        naga.setUsb(true);
+        naga.setMouseInterface(MouseInterface.USB);
 
         List<Product> dummyProductList = new LinkedList<>();
         dummyProductList.add(deathadder);

@@ -1,5 +1,6 @@
 package com.pcwonder.api.category;
 
+import com.pcwonder.api.manufacturer.Manufacturer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -33,21 +34,61 @@ class CategoryControllerTest {
 
     @Test
     void get_categories_returns_categories_sorted_by_name_asc() {
-        Category cpu = new Category();
-        cpu.setId(0);
-        cpu.setName("CPU");
-
-        Category gpu = new Category();
-        gpu.setId(1);
-        gpu.setName("GPU");
-
-        List<Category> expectedCategoryList = new LinkedList<>();
-        expectedCategoryList.add(gpu);
-        expectedCategoryList.add(cpu);
+        List<Category> expectedCategoryList = makeDummyCategoryList();
 
         when(mockedRepository.findAllByOrderByNameAsc()).thenReturn(expectedCategoryList);
 
         List<Category> actualCategoryList = controller.getCategories();
         assertEquals(expectedCategoryList, actualCategoryList);
+    }
+
+    private List<Category> makeDummyCategoryList() {
+        List<Manufacturer> dummyCPUManufacturerList = makeDummyCPUManufacturerList();
+        List<Manufacturer> dummyGPUManufacturerList = makeDummyGPUManufacturerList();
+
+        Category cpu = new Category();
+        cpu.setId(0);
+        cpu.setName("CPU");
+        cpu.setManufacturers(dummyCPUManufacturerList);
+
+        Category gpu = new Category();
+        gpu.setId(1);
+        gpu.setName("GPU");
+        gpu.setManufacturers(dummyGPUManufacturerList);
+
+        List<Category> dummyCategoryList = new LinkedList<>();
+        dummyCategoryList.add(gpu);
+        dummyCategoryList.add(cpu);
+        return dummyCategoryList;
+    }
+
+    private List<Manufacturer> makeDummyCPUManufacturerList() {
+        Manufacturer intel = new Manufacturer();
+        intel.setId(0);
+        intel.setName("Intel");
+
+        Manufacturer amd = new Manufacturer();
+        amd.setId(1);
+        amd.setName("AMD");
+
+        LinkedList<Manufacturer> dummyCPUManufacturerList = new LinkedList<>();
+        dummyCPUManufacturerList.add(intel);
+        dummyCPUManufacturerList.add(amd);
+        return dummyCPUManufacturerList;
+    }
+
+    private List<Manufacturer> makeDummyGPUManufacturerList() {
+        Manufacturer amd = new Manufacturer();
+        amd.setId(1);
+        amd.setName("AMD");
+
+        Manufacturer nvidia = new Manufacturer();
+        nvidia.setId(2);
+        nvidia.setName("Nvidia");
+
+        LinkedList<Manufacturer> dummyGPUManufacturerList = new LinkedList<>();
+        dummyGPUManufacturerList.add(amd);
+        dummyGPUManufacturerList.add(nvidia);
+        return dummyGPUManufacturerList;
     }
 }

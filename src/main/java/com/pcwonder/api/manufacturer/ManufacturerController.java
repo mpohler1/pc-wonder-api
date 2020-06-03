@@ -1,6 +1,7 @@
 package com.pcwonder.api.manufacturer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class ManufacturerController {
         this.repository = repository;
     }
 
+    @CrossOrigin("https://www.masonpohler.com")
     @GetMapping("/manufacturers")
     List<Manufacturer> getManufacturers() {
         return repository.findAllByOrderByNameAsc();

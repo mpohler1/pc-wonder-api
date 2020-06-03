@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Data
 @Entity
 public class Memory extends Product {
-    private int size;
+    private MemoryFormFactor size;
     private int numSticks;
     private int memoryPerStick;
     private MemoryType type;

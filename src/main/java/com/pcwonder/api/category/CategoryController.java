@@ -15,7 +15,7 @@ class CategoryController {
         this.repository = repository;
     }
 
-    @CrossOrigin("https://www.masonpohler.com")
+    @CrossOrigin("https://mpohler1.github.io")
     @GetMapping("/categories")
     List<Category> getCategories() {
         return repository.findAllByOrderByNameAsc();

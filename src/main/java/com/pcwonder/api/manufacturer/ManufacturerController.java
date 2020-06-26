@@ -17,7 +17,7 @@ public class ManufacturerController {
         this.repository = repository;
     }
 
-    @CrossOrigin("https://www.masonpohler.com")
+    @CrossOrigin("https://mpohler1.github.io")
     @GetMapping("/manufacturers")
     List<Manufacturer> getManufacturers() {
         return repository.findAllByOrderByNameAsc();

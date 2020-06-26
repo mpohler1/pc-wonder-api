@@ -18,31 +18,31 @@ public class ProductController {
         this.repository = repository;
     }
 
-    @CrossOrigin("https://www.masonpohler.com")
+    @CrossOrigin("https://mpohler1.github.io")
     @GetMapping("/products")
     List<Product> getProducts() {
         return repository.findAll();
     }
 
-    @CrossOrigin("https://www.masonpohler.com")
+    @CrossOrigin("https://mpohler1.github.io")
     @GetMapping("/products/category/id/{categoryId}")
     List<Product> getProducts(@PathVariable long categoryId) {
         return repository.findAllByCategoryId(categoryId);
     }
 
-    @CrossOrigin("https://www.masonpohler.com")
+    @CrossOrigin("https://mpohler1.github.io")
     @GetMapping("products/category/name/{categoryName}")
     List<Product> getProducts(@PathVariable String categoryName) {
         return repository.findAllByCategoryNameIgnoreCase(categoryName);
     }
 
-    @CrossOrigin("https://www.masonpohler.com")
+    @CrossOrigin("https://mpohler1.github.io")
     @GetMapping("products/search/{searchString}")
     List<Product> search(@PathVariable String searchString) {
         return repository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(searchString, searchString);
     }
 
-    @CrossOrigin("https://www.masonpohler.com")
+    @CrossOrigin("https://mpohler1.github.io")
     @GetMapping("/product/{uuid}")
     Product getProduct(@PathVariable String uuid) {
         return repository.findByUuid(uuid)
